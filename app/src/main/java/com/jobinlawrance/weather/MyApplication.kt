@@ -3,6 +3,7 @@ package com.jobinlawrance.weather
 import android.app.Application
 import com.jobinlawrance.weather.dagger.components.AppComponent
 import com.jobinlawrance.weather.dagger.components.DaggerAppComponent
+import com.jobinlawrance.weather.dagger.modules.AppModule
 
 /**
  * Created by jobinlawrance on 16/12/17.
@@ -17,6 +18,7 @@ class MyApplication : Application() {
         appComponent =
                 DaggerAppComponent
                         .builder()
+                        .appModule(AppModule(this))
                         .build()
     }
 
