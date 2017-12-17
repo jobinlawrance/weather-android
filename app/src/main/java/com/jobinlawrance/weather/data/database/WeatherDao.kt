@@ -12,8 +12,8 @@ import io.reactivex.Flowable
 @Dao
 interface WeatherDao {
 
-    @Query("SELECT * FROM weather")
-    fun getWeatherDataList(): Flowable<List<WeatherData>>
+    @Query("SELECT * FROM weather ORDER BY id DESC")
+    fun getWeatherDataListReverseSorted(): Flowable<List<WeatherData>>
 
     @Insert
     fun insertWeatherData(weatherData: WeatherData)
