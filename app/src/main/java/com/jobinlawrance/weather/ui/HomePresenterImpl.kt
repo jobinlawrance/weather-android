@@ -5,6 +5,7 @@ import com.jobinlawrance.weather.data.WeatherData
 import com.jobinlawrance.weather.data.database.WeatherDao
 import com.jobinlawrance.weather.data.network.WeatherApi
 import com.jobinlawrance.weather.data.network.model.WeatherResponse
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
 /**
@@ -22,6 +23,7 @@ class HomePresenterImpl(val weatherApi: WeatherApi, val weatherDao: WeatherDao) 
         val disposable =
                 weatherDao
                         .getWeatherDataListReverseSorted()
+                        .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(this::updateView)
 
         compositeDisposable.add(disposable)
